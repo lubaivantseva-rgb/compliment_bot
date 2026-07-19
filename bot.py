@@ -80,6 +80,20 @@ app.add_handler(CommandHandler("stop", stop))
 
 app.job_queue.run_daily(send_compliment, time=time(hour=8, minute=0))
 
+import threading
+from flask import Flask
+
+web_app = Flask(__name__)
+
+@web_app.route("/")
+def home():
+    return "Bot is running!"
+
+def run_web():
+    web_app.run(host="0.0.0.0", port=1000)
+
+threading.Thread(target=run_web).start()
+
 print ("Bot working!")
 
 app.run_polling()
