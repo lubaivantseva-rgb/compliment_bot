@@ -2,6 +2,7 @@ import os
 import json
 import random
 from datetime import time
+from zoneinfo import ZoneInfo
 
 from telegram import Update
 from telegram.ext import( Application, CommandHandler, ContextTypes)
@@ -99,7 +100,10 @@ app = Application.builder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("stop", stop))
 
-app.job_queue.run_once(send_compliment,when=10)
+app.job_queue.run_daily(
+    send_compliment,
+    time=time(hour=14, minute=15, tzinfo=ZoneInfo("Europe/London"))
+)
 
 import threading
 from flask import Flask
