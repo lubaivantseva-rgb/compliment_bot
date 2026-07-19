@@ -84,7 +84,6 @@ def generate_compliment():
 
 async def send_compliment(context: ContextTypes.DEFAULT_TYPE):
     for user_id in users:
-
     if compliments:
         text = "Доброго ранку, сонечко ☀️\n\n + random.choice(compliments) + "\n\n🕊️🫂🩷"
     else:
