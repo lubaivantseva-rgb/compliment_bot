@@ -6,6 +6,10 @@ from datetime import time
 from telegram import Update
 from telegram.ext import( Application, CommandHandler, ContextTypes)
 
+from openai import OpenAI
+import os
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 TOKEN = "8851245383:AAH5etwRLacYrjXgvvLyTmBnSmBAdYWY8dg"
 
@@ -66,13 +70,24 @@ async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
     else:
         await update.message.reply_text("Тебе немає в списку ^_^")
 
+def generate_compliment():
+    response = client.chat.completions.create(
+        model="gpt-4.1-mini",
+        messages=[
+            {
+                "role": "system",
+                "content": "Напиши один ніжний короткий комплімент українською мовою для дівчини. Додай красиві емодзі."
+            }
+        ]
+    )
+    return response.choices[0].message.content
+
 async def send_compliment(context: ContextTypes.DEFAULT_TYPE):
     for user_id in users:
-        text = (
-            "Доброго ранку, сонечко ☀️\n\n"
-            + random.choice(compliments)
-            + "\n\n🕊️🫂🩷"
-        )
+if compliments:
+    text = "Доброго ранку, сонечко ☀️\n\n + random.choice(compliments) + "\n\n🕊️🫂🩷"
+else:
+    text = generate_compliment()
 
         await context.bot.send_message(
             chat_id=user_id,
