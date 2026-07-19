@@ -41,7 +41,7 @@ compliments = [
 "Нехай сьогоднішній день буде таким же прекрасним як твоя усмішка",
 "Нехай сьогодні все виходить легко, бо ти цього варта",
 "Твоя посмішка — найкращий початок будь-якого дня",
-"Завтра буде новий день, і він стане кращим, бо в ньому є ти",
+"Цей день стане кращим, бо в ньому є ти",
 ]
 
 if os.path.exists("users.json"):
@@ -58,7 +58,7 @@ async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     users.add(update.effective_chat.id)
     save_users()
 
-    await update.message.reply_text("Супер! Я буду надсилати тобі щоденні нагадування про те яка ти особлива")
+    await update.message.reply_text("Пташеня моє! Я буду надсилати тобі кожен ранок нагадування про те яка ти в мене особлива!")
 
 async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_chat.id
@@ -102,7 +102,7 @@ app.add_handler(CommandHandler("stop", stop))
 
 app.job_queue.run_daily(
     send_compliment,
-    time=time(hour=14, minute=40, tzinfo=ZoneInfo("Europe/London"))
+    time=time(hour=8, minute=0, tzinfo=ZoneInfo("Europe/London"))
 )
 
 import threading
