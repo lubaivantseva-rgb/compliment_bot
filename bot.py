@@ -102,7 +102,7 @@ app.add_handler(CommandHandler("stop", stop))
 
 app.job_queue.run_daily(
     send_compliment,
-    time=time(hour=14, minute=23, tzinfo=ZoneInfo("Europe/London"))
+    time=time(hour=14, minute=28, tzinfo=ZoneInfo("Europe/London"))
 )
 
 import threading
