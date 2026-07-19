@@ -99,7 +99,7 @@ app = Application.builder().token(TOKEN).build()
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("stop", stop))
 
-app.job_queue.run_once(send_compliment, 10)
+app.job_queue.run_once(send_compliment,when=10)
 
 import threading
 from flask import Flask
