@@ -82,4 +82,7 @@ app.job_queue.run_daily(send_compliment, time=time(hour=8, minute=0))
 
 print ("Bot working!")
 
-app.run_polling()
+import asyncio
+
+if __name__ == "__main__":
+    asyncio.run(app.run_polling())
