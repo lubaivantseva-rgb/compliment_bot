@@ -38,7 +38,7 @@ compliments = [
 "Ти особлива, і я дуже ціную тебе",
 "Біля тебе серце почувається спокійніше",
 "Ти — маленьке диво у великому світі",
-"Доброго ранку, красуне. Нехай сьогоднішній день буде таким же прекрасним як твоя усмішка",
+"Нехай сьогоднішній день буде таким же прекрасним як твоя усмішка",
 "Нехай сьогодні все виходить легко, бо ти цього варта",
 "Твоя посмішка — найкращий початок будь-якого дня",
 "Завтра буде новий день, і він стане кращим, бо в ньому є ти",
@@ -86,7 +86,7 @@ def generate_compliment():
 async def send_compliment(context: ContextTypes.DEFAULT_TYPE):
     for user_id in users:
         if compliments:
-            text = "☀️оброго ранку, сонечко!\n\n" + random.choice(compliments) + "\n\n🕊️🫂🩷"
+            text = "☀ Д️оброго ранку, сонечко!\n\n" + random.choice(compliments) + "\n\n🕊️🫂🩷"
         else:
             text = generate_compliment()
 
@@ -102,7 +102,7 @@ app.add_handler(CommandHandler("stop", stop))
 
 app.job_queue.run_daily(
     send_compliment,
-    time=time(hour=14, minute=35, tzinfo=ZoneInfo("Europe/London"))
+    time=time(hour=14, minute=40, tzinfo=ZoneInfo("Europe/London"))
 )
 
 import threading
