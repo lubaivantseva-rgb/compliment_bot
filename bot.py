@@ -72,19 +72,19 @@ async def send_compliment(context: ContextTypes.DEFAULT_TYPE):
             "Доброго ранку, сонечко ☀️\n\n"
             + random.choice(compliments)
             + "\n\n🕊️🫂🩷"
-)
+        )
 
-await context.bot.send_message(
-    chat_id=user_id,
-    text=text
-)
+        await context.bot.send_message(
+            chat_id=user_id,
+            text=text
+        )
 
 app = Application.builder().token(TOKEN).build()
 
 app.add_handler(CommandHandler("start", start))
 app.add_handler(CommandHandler("stop", stop))
 
-app.job_queue.run_daily(send_compliment, time=time(hour=8, minute=0))
+app.job_queue.run_once(send_compliment, 10)
 
 import threading
 from flask import Flask
