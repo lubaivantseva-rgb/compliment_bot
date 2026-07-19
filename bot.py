@@ -68,9 +68,15 @@ async def stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 async def send_compliment(context: ContextTypes.DEFAULT_TYPE):
     for user_id in users:
-        await context.bot.send_message(
-            chat_id=user_id,
-            text=random.choice(compliments),
+        text = (
+            "Доброго ранку, сонечко ☀️\n\n"
+            + random.choice(compliments)
+            + "\n\n🕊️🫂🩷"
+)
+
+await context.bot.send_message(
+    chat_id=user_id,
+    text=text
 )
 
 app = Application.builder().token(TOKEN).build()
